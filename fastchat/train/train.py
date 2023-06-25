@@ -93,7 +93,7 @@ def preprocess(
             role = roles[sentence["from"]]
             assert role == conv.roles[j % 2], f"{i}"
             conv.append_message(role, sentence["value"])
-        conversations.append(conv.get_prompt())
+        conversations.append(conv.get_prompt(system=source[0]["system"]))
 
     # Tokenize conversations
     input_ids = tokenizer(

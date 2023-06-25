@@ -44,8 +44,10 @@ class Conversation:
     # Stops generation if meeting any token in this list
     stop_token_ids: List[int] = None
 
-    def get_prompt(self) -> str:
+    def get_prompt(self, system=None) -> str:
         """Get the prompt for generation."""
+        if system is not None:
+            self.system = system
         if self.sep_style == SeparatorStyle.ADD_COLON_SINGLE:
             ret = self.system + self.sep
             for role, message in self.messages:
